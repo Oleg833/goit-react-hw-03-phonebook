@@ -16,6 +16,25 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount = () => {
+    // console.log('first run DidMount');    
+
+    const savedContacts = localStorage.getItem("contacts");
+    const parsedContacts = JSON.parse(savedContacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+      console.log("Restored contacts");
+    }
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (this.state.contacts !== prevState.contacts) {
+      console.log("Saved contacts");
+      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    }
+  }
+
   formSubmit = ({ name, number }) => {
     const contact = {
       id: nanoid(),
@@ -52,6 +71,7 @@ export class App extends Component {
 
   render() {
     const { filter } = this.state;
+    // console.log('first render');
     return (
       <section className={css.section}>
         <h1 className={css.title}>Phonebook</h1>
