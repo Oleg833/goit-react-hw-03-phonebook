@@ -6,6 +6,10 @@
     background-color: aquamarine;
     width: 500px;
     margin: 0 auto;
+    /* border: solid 20px goldenrod; */
+    border-color: transparent;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
 .title {
     color: #212121;
